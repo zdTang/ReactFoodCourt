@@ -9,6 +9,7 @@ import MealDetail from "./components/MealDetail/MealDetail";
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
   const [mealDetailIsShown, setMealDetailShown] = useState(false);
+  const [detail, setDetail] = useState({});
 
   const showCartHandler = () => {
     setCartIsShown(true);
@@ -18,8 +19,9 @@ function App() {
     setCartIsShown(false);
   };
 
-  const showMealDetailHandler = () => {
-    // console.log(detail);
+  const showMealDetailHandler = (newDetail) => {
+    console.log(newDetail);
+    setDetail((prevDetail) => ({ ...prevDetail, ...newDetail }));
     setMealDetailShown(true);
   };
 
@@ -29,7 +31,9 @@ function App() {
 
   return (
     <CartProvider>
-      {mealDetailIsShown && <MealDetail onClose={hideMealDetailHandler} />}
+      {mealDetailIsShown && (
+        <MealDetail onClose={hideMealDetailHandler} detail={detail} />
+      )}
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <main>
