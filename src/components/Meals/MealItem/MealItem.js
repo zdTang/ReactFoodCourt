@@ -33,10 +33,10 @@ const MealItem = (props) => {
         <img
           className={classes.pressableImage}
           onClick={clickImage}
-          src="/1.jpg"
+          src={`/meal/${props.img}.jpg`}
           alt="Girl in a jacket"
-          width="100"
-          height="60"
+          width="200"
+          height="100"
         />
       </div>
       <div>
