@@ -20,7 +20,6 @@ function App() {
   };
 
   const showMealDetailHandler = (newDetail) => {
-    console.log(newDetail);
     setDetail((prevDetail) => ({ ...prevDetail, ...newDetail }));
     setMealDetailShown(true);
   };
