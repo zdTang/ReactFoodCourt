@@ -32,7 +32,14 @@ const MealItem = (props) => {
       <div>
         <img
           className={classes.pressableImage}
-          onClick={clickImage}
+          onClick={() =>
+            props.onShowMealDetail({
+              name: props.name,
+              src: `/meal/${props.img}.jpg`,
+              des: props.description,
+              price,
+            })
+          }
           src={`/meal/${props.img}.jpg`}
           alt={props.img}
           width="200"
