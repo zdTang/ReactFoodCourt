@@ -38,7 +38,7 @@ const MealItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <button className='font-inherit cursor-pointer bg-[#8a2b06] border border-[#8a2b06] text-white py-1 px-8 rounded-full font-bold hover:bg-[#641e03] active:bg-[#641e03] hover:border-[#641e03] active:border-[#641e03]"'>
+      <button className="font-inherit cursor-pointer bg-[#8a2b06] border border-[#8a2b06] text-white py-1 px-8 rounded-full font-bold hover:bg-[#641e03] active:bg-[#641e03] hover:border-[#641e03] active:border-[#641e03]">
         + Add
       </button>
       {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
