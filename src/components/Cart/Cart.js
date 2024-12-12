@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
-import classes from "./Cart.module.css";
 import CartContext from "../../store/cart-context";
 import Checkout from "./Checkout";
 
@@ -45,7 +44,7 @@ const Cart = (props) => {
   };
 
   const cartItems = (
-    <ul className={classes["cart-items"]}>
+    <ul className="list-none m-0 p-0 max-h-50 overflow-y-auto">
       {cartCtx.items.map((item) => (
         <CartItem
           key={item.id}
@@ -60,12 +59,17 @@ const Cart = (props) => {
   );
 
   const modalActions = (
-    <div className={classes.actions}>
-      <button className={classes["button--alt"]} onClick={props.onClose}>
+    <div className="text-right">
+      <button className="text-red-500" onClick={props.onClose}>
         Close
       </button>
       {hasItems && (
-        <button className={classes.button} onClick={orderHandler}>
+        <button
+          className="hover:bg-red-600 hover:border-red-600 hover:text-white 
+          active:bg-red-600 active:border-red-600 active:text-white 
+          bg-transparent border border-red-500 px-4 py-2 rounded-full ml-2"
+          onClick={orderHandler}
+        >
           Order
         </button>
       )}
@@ -75,7 +79,7 @@ const Cart = (props) => {
   const cartModalContent = (
     <React.Fragment>
       {cartItems}
-      <div className={classes.total}>
+      <div className="flex justify-between items-center font-bold text-xl my-4">
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
@@ -91,8 +95,11 @@ const Cart = (props) => {
   const didSubmitModalContent = (
     <React.Fragment>
       <p>Successfully sent the order!</p>
-      <div className={classes.actions}>
-        <button className={classes.button} onClick={props.onClose}>
+      <div className="text-right">
+        <button
+          className="bg-red-500 text-white px-4 py-2 rounded-full ml-2"
+          onClick={props.onClose}
+        >
           Close
         </button>
       </div>

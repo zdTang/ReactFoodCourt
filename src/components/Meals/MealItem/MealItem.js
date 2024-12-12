@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
 import MealItemForm from "./MealItemForm";
-import classes from "./MealItem.module.css";
 import CartContext from "../../../store/cart-context";
 
 const MealItem = (props) => {
@@ -18,20 +17,16 @@ const MealItem = (props) => {
     });
   };
 
-  const clickImage = () => {
-    console.log(props.name);
-  };
-
   return (
-    <li className={classes.meal}>
+    <li className="meal flex justify-between items-center m-4 pb-4 border-b border-gray-300">
       <div>
-        <h3>{props.name}</h3>
-        <div className={classes.description}>{props.description}</div>
-        <div className={classes.price}>{price}</div>
+        <h3 className="mb-1">{props.name}</h3>
+        <div className="italic">{props.description}</div>
+        <div className="mt-1 font-bold text-[#ad5502] text-xl">{price}</div>
       </div>
       <div>
         <img
-          className={classes.pressableImage}
+          className="transition-all duration-200 ease-in-out cursor-pointer active:scale-95 active:shadow-inner h-[150px] w-[200px] object-cover"
           onClick={() =>
             props.onShowMealDetail({
               name: props.name,
@@ -42,8 +37,6 @@ const MealItem = (props) => {
           }
           src={`/meal/${props.img}.jpg`}
           alt={props.img}
-          width="200"
-          height="100"
         />
       </div>
       <div>
