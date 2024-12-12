@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from "react";
 
-import CartIcon from '../Cart/CartIcon';
-import CartContext from '../../store/cart-context';
-import classes from './HeaderCartButton.module.css';
+import CartIcon from "../Cart/CartIcon";
+import CartContext from "../../store/cart-context";
 
 const HeaderCartButton = (props) => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
@@ -13,8 +12,10 @@ const HeaderCartButton = (props) => {
   const numberOfCartItems = items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);
-
-  const btnClasses = `${classes.button} ${btnIsHighlighted ? classes.bump : ''}`;
+  const buttonClass =
+    "cursor-pointer font-inherit border-0 bg-[#4d1601] text-white py-3 px-12 flex justify-around items-center rounded-[25px] font-bold hover:bg-[#2c0d00] active:bg-[#2c0d00]";
+  const bumpClass = "animate-bump";
+  const btnClasses = `${buttonClass} ${btnIsHighlighted ? bumpClass : ""}`;
 
   useEffect(() => {
     if (items.length === 0) {
@@ -33,11 +34,13 @@ const HeaderCartButton = (props) => {
 
   return (
     <button className={btnClasses} onClick={props.onClick}>
-      <span className={classes.icon}>
+      <span className="w-[1.35rem] h-[1.35rem] mr-2">
         <CartIcon />
       </span>
       <span>Your Cart</span>
-      <span className={classes.badge}>{numberOfCartItems}</span>
+      <span className="bg-[#b94517] py-1 px-4 rounded-[25px] ml-4 font-bold hover:bg-[#92320c] active:bg-[#92320c]">
+        {numberOfCartItems}
+      </span>
     </button>
   );
 };

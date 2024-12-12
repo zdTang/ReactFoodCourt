@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
-import classes from "./AvailableMeals.module.css";
 
-const AvailableMeals = () => {
+const AvailableMeals = (props) => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
@@ -45,7 +44,7 @@ const AvailableMeals = () => {
 
   if (isLoading) {
     return (
-      <section className={classes.MealsLoading}>
+      <section className="text-center text-white">
         <p>Loading...</p>
       </section>
     );
@@ -53,7 +52,7 @@ const AvailableMeals = () => {
 
   if (httpError) {
     return (
-      <section className={classes.MealsError}>
+      <section className="text-center text-red-500">
         <p>{httpError}</p>
       </section>
     );
@@ -61,6 +60,7 @@ const AvailableMeals = () => {
 
   const mealsList = meals.map((meal) => (
     <MealItem
+      onShowMealDetail={props.onShowMealDetail}
       key={meal.id}
       id={meal.id}
       name={meal.name}
@@ -71,9 +71,9 @@ const AvailableMeals = () => {
   ));
 
   return (
-    <section className={classes.meals}>
+    <section className="max-w-[60rem] w-[90%] my-8 mx-auto animate-meals-appear">
       <Card>
-        <ul>{mealsList}</ul>
+        <ul className="list-none m-0 p-0">{mealsList}</ul>
       </Card>
     </section>
   );
