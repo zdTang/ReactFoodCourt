@@ -11,8 +11,6 @@ const Header = (props) => {
         <HeaderCartButton onClick={props.onShowCart} />
       </header>
       <div className="relative h-[25rem] overflow-hidden">
-        {" "}
-        {/* relative positioning here */}
         <img
           className="absolute inset-0 w-full h-full object-cover" // absolute positioning and inset-0
           src={mealsImage}
