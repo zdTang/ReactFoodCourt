@@ -26,7 +26,6 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://zdtang.github.io/ReactFoodCourt",
   "browserslist": {
     "production": [
       ">0.2%",
