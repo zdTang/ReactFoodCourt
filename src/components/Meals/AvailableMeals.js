@@ -3,43 +3,61 @@ import { useEffect, useState } from "react";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 
+const allMeals = {
+  meals: [
+    {
+      id: "m1",
+      name: "Sushi",
+      description: "Finest fish and veggies",
+      price: 22.99,
+      pic: "sushi",
+    },
+    {
+      id: "m2",
+      name: "Schnitzel",
+      description: "A german specialty!",
+      price: 16.5,
+      pic: "schnitzel",
+    },
+    {
+      id: "m3",
+      name: "Barbecue Burger",
+      description: "American, raw, meaty",
+      price: 12.99,
+      pic: "BarbecueBurger",
+    },
+    {
+      id: "m4",
+      name: "Green Bowl",
+      description: "Healthy...and green...",
+      price: 18.99,
+      pic: "greenBowl",
+    },
+  ],
+};
+
 const AvailableMeals = (props) => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
+  //const [httpError, setHttpError] = useState();
+
+  // If Loading data rom extral source, using the following code:
 
   useEffect(() => {
-    const fetchMeals = async () => {
-      const response = await fetch(
-        "https://react-food-court-9720e-default-rtdb.firebaseio.com/meals.json"
-      );
+    var responseData = allMeals.meals;
+    const loadedMeals = [];
 
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const responseData = await response.json();
-
-      const loadedMeals = [];
-
-      for (const key in responseData) {
-        loadedMeals.push({
-          id: key,
-          name: responseData[key].name,
-          description: responseData[key].description,
-          price: responseData[key].price,
-          img: responseData[key].pic.toLowerCase(),
-        });
-      }
-
-      setMeals(loadedMeals);
-      setIsLoading(false);
-    };
-
-    fetchMeals().catch((error) => {
-      setIsLoading(false);
-      setHttpError(error.message);
-    });
+    for (const key in responseData) {
+      loadedMeals.push({
+        id: key,
+        name: responseData[key].name,
+        description: responseData[key].description,
+        price: responseData[key].price,
+        img: responseData[key].pic.toLowerCase(),
+      });
+    }
+    setMeals(loadedMeals);
+    setIsLoading(false);
   }, []);
 
   if (isLoading) {
@@ -50,13 +68,13 @@ const AvailableMeals = (props) => {
     );
   }
 
-  if (httpError) {
-    return (
-      <section className="text-center text-red-500">
-        <p>{httpError}</p>
-      </section>
-    );
-  }
+  // if (httpError) {
+  //   return (
+  //     <section className="text-center text-red-500">
+  //       <p>{httpError}</p>
+  //     </section>
+  //   );
+  // }
 
   const mealsList = meals.map((meal) => (
     <MealItem
