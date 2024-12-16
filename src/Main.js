@@ -18,7 +18,7 @@ function Main() {
   };
 
   return (
-    <CartProvider>
+    <div>
       {mealDetailIsShown && (
         <MealDetail onClose={hideMealDetailHandler} detail={detail} />
       )}
@@ -26,7 +26,7 @@ function Main() {
       <main>
         <Meals onShowMealDetail={showMealDetailHandler} />
       </main>
-    </CartProvider>
+    </div>
   );
 }
 
